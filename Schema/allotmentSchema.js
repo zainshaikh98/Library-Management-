@@ -1,0 +1,64 @@
+const { date } = require("joi")
+let{sequelize,DataTypes,Model,QueryTypes,Op}=require("../init/Dbconfig")
+
+class Allotment extends Model{}
+
+Allotment.init({
+    id:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        autoIncrement:true,
+        primaryKey:true
+    },
+    book_id:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    book_name:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    user_id:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    issuedOn:{
+        type:DataTypes.DATE,
+        allowNull:true
+    },
+    bookStatus:{
+        type:DataTypes.BOOLEAN,
+        allowNull:true
+    },
+    issuedTo:{
+        type:DataTypes.INTEGER,
+        allowNull:true
+    },
+    returningDate:{
+        type:DataTypes.DATEONLY,
+        allowNull:false
+    },
+    returnOn:{
+        type:DataTypes.DATE,
+        allowNull:true
+    },
+    bookFine:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        defaultValue:50
+    },
+    createdBy:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    updatedBy:{
+        type:DataTypes.INTEGER,
+        allowNull:true
+    }   
+},{
+    modelName:"Allotment",
+    tableName:'allotment_of_books',
+    sequelize
+})
+
+module.exports={Allotment,QueryTypes,Op}
